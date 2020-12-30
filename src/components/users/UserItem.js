@@ -1,6 +1,6 @@
 const UserItem = (props) => {
   return (
-    <div key={props.id} className="card text-center">
+    <div className="card text-center">
       <img
         src={props.avatar_url}
         className="round-img"
