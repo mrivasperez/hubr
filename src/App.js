@@ -9,6 +9,7 @@ import Search from "./components/users/Search";
 
 function App() {
   const [users, setUsers] = useState("");
+  const [error, setError] = useState(null);
 
   // // use async functon to fetch user data from github api
   // async function fetchUserData() {
@@ -28,15 +29,20 @@ function App() {
   // });
 
   const searchUsers = async (text) => {
+    if (text.length === 0) {
+      return setError("Empty searches are not allowed.");
+    }
+
+    setError(null);
     axios
       .get(
         `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
       )
       .then((res) => {
         // update the users state with the data from api
-        console.log(res.data);
         setUsers(res.data.items);
-      });
+      })
+      .catch((reason) => {});
   };
 
   const clearUsers = () => {
@@ -47,6 +53,7 @@ function App() {
     <div className="App">
       <Navbar title="Hubr" icon="fab fa-github" />
       <div className="container">
+        {error && <p style={{ color: "red" }}>Error: {error}</p>}
         <Search
           searchUsers={searchUsers}
           clearUsers={clearUsers}
