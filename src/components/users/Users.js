@@ -1,5 +1,4 @@
 import UserItem from "./UserItem";
-import Spinner from "../layout/Spinner";
 
 const userStyle = {
   display: "grid",
@@ -8,9 +7,7 @@ const userStyle = {
 };
 
 const Users = (props) => {
-  return !props.users ? (
-    <Spinner />
-  ) : (
+  return !props.users ? null : (
     <div style={userStyle}>
       {props.users.map((user) => (
         <UserItem key={user.id} {...user} />
