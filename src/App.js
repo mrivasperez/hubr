@@ -14,6 +14,7 @@ function App() {
   const [users, setUsers] = useState("");
   const [error, setError] = useState(null);
   const [userProfile, setUserProfile] = useState("");
+  const [userRepos, setUserRepos] = useState([]);
 
   // // use async functon to fetch user data from github api
   // async function fetchUserData() {
@@ -60,9 +61,22 @@ function App() {
         // update the users state with the data from api
         setUserProfile(res.data);
         // console.log(res.data);
+        getUserRepos(username);
       })
 
       .catch((reason) => {});
+  };
+
+  const getUserRepos = async (username) => {
+    axios
+      .get(
+        `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+      )
+
+      .then((res) => {
+        // update the users state with the data from api
+        setUserRepos(res.data);
+      });
   };
 
   const clearUsers = () => {
@@ -95,7 +109,13 @@ function App() {
               path="/user/:login"
               exact
               render={(props) => (
-                <User {...props} getUser={getUser} userProfile={userProfile} />
+                <User
+                  {...props}
+                  getUser={getUser}
+                  userProfile={userProfile}
+                  userRepos={userRepos}
+                  getUserRepos={getUserRepos}
+                />
               )}
             />
           </Switch>

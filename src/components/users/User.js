@@ -5,7 +5,9 @@ const User = (props) => {
   //   console.log(props);
   useEffect(() => {
     props.getUser(props.match.params.login);
-  });
+    props.getUserRepos(props.match.params.login);
+  }, []); // <-- I passed in empty array as second argument so that it would not render over and over again, I will clean it up lated !! TODO
+  console.log(props.userRepos);
 
   const {
     name,
@@ -36,7 +38,6 @@ const User = (props) => {
             className="round-img"
             style={{ width: "150px" }}
             alt={name}
-            srcset=""
           />
           <h1>{name}</h1>
 
