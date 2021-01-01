@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const UserItem = (props) => {
   return (
     <div className="card text-center">
@@ -9,9 +11,9 @@ const UserItem = (props) => {
       />
       <h3>{props.login}</h3>
       <div>
-        <a href={props.html_url} className="btn btn-dark btn-sm my-1">
+        <Link to={`/user/${props.login}`} className="btn btn-dark btn-sm my-1">
           More
-        </a>
+        </Link>
       </div>
     </div>
   );
