@@ -1,13 +1,14 @@
 import { useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 
+import Repos from "../repos/Repos";
+
 const User = (props) => {
   //   console.log(props);
   useEffect(() => {
     props.getUser(props.match.params.login);
     props.getUserRepos(props.match.params.login);
   }, []); // <-- I passed in empty array as second argument so that it would not render over and over again, I will clean it up lated !! TODO
-  console.log(props.userRepos);
 
   const {
     name,
@@ -97,6 +98,7 @@ const User = (props) => {
         <div className="badge badge-light">Public Repos: {public_repos}</div>
         <div className="badge badge-dark">Public Gists: {public_gists}</div>
       </div>
+      <Repos userRepos={props.userRepos} />
     </Fragment>
   );
 };
