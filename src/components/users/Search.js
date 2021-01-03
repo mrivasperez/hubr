@@ -1,21 +1,19 @@
 import { useState } from "react";
 
-const Search = (props) => {
+const Search = ({ searchUsers, showClear, clearUsers }) => {
   const [text, setText] = useState("");
 
-  const onInputChange = (e) => {
-    setText(e.target.value);
-  };
+  const onInputChange = (e) => setText(e.target.value);
 
-  const onFormSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    props.searchUsers(text);
+    searchUsers(text);
     setText("");
   };
 
   return (
     <div>
-      <form onSubmit={onFormSubmit} className="form">
+      <form onSubmit={onSubmit} className="form">
         <input
           type="text"
           name="text"
@@ -29,8 +27,8 @@ const Search = (props) => {
           className="btn btn-dark btn-block"
         />
       </form>
-      {props.showClear && (
-        <button className="btn btn-light btn-block" onClick={props.clearUsers}>
+      {showClear && (
+        <button className="btn btn-light btn-block" onClick={clearUsers}>
           Clear
         </button>
       )}

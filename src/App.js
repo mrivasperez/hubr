@@ -10,7 +10,7 @@ import Users from "./components/users/Users";
 import User from "./components/users/User";
 import Search from "./components/users/Search";
 
-function App() {
+const App = () => {
   const [users, setUsers] = useState("");
   const [error, setError] = useState(null);
   const [userProfile, setUserProfile] = useState("");
@@ -39,44 +39,31 @@ function App() {
     }
 
     setError(null);
-    axios
-      .get(
-        `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-      )
-      .then((res) => {
-        // update the users state with the data from api
-        setUsers(res.data.items);
-      })
-      .catch((reason) => {});
+
+    const res = await axios.get(
+      `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+
+    setUsers(res.data.items);
   };
 
   //get github user profile
   const getUser = async (username) => {
-    axios
-      .get(
-        `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-      )
+    const res = await axios.get(
+      `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
 
-      .then((res) => {
-        // update the users state with the data from api
-        setUserProfile(res.data);
-        // console.log(res.data);
-        getUserRepos(username);
-      })
-
-      .catch((reason) => {});
+    setUserProfile(res.data);
+    // console.log(res.data);
+    getUserRepos(username);
   };
 
   const getUserRepos = async (username) => {
-    axios
-      .get(
-        `https://api.github.com/users/${username}/repos?per_page=10&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-      )
+    const res = await axios.get(
+      `https://api.github.com/users/${username}/repos?per_page=10&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
 
-      .then((res) => {
-        // update the users state with the data from api
-        setUserRepos(res.data);
-      });
+    setUserRepos(res.data);
   };
 
   const clearUsers = () => {
@@ -123,6 +110,6 @@ function App() {
       </div>
     </Router>
   );
-}
+};
 
 export default App;
