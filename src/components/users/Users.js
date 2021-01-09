@@ -1,4 +1,7 @@
+import { useContext } from "react";
+
 import UserItem from "./UserItem";
+import GithubContext from "../../context/github/githubContext";
 
 const userStyle = {
   display: "grid",
@@ -7,9 +10,11 @@ const userStyle = {
 };
 
 const Users = (props) => {
-  return !props.users ? null : (
+  const githubContext = useContext(GithubContext);
+
+  return !githubContext.users ? null : (
     <div style={userStyle}>
-      {props.users.map((user) => (
+      {githubContext.users.map((user) => (
         <UserItem key={user.id} {...user} />
       ))}
     </div>
