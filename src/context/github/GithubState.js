@@ -1,14 +1,8 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer } from "react";
 import axios from "axios";
 import GithubContext from "./githubContext";
 import GithubReducer from "./githubReducer";
-import {
-  SEARCH_USERS,
-  CLEAR_USERS,
-  GET_REPOS,
-  GET_USER,
-  SET_ERROR,
-} from "../types";
+import { SEARCH_USERS, CLEAR_USERS, GET_REPOS, GET_USER } from "../types";
 
 const GithubState = (props) => {
   const initialState = {
