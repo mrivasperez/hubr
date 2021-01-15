@@ -1,12 +1,12 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap");
 
 /* Global Styles */
 :root {
-  --primary-color: #dc3545;
-  --dark-color: #333333;
-  --light-color: #f4f4f4;
-  --danger-color: #dc3545;
-  --success-color: #28a745;
+  --primary-color: #000000;
+  --dark-color: #676767;
+  --light-color: #cdcdcd;
+  --danger-color: #ff0b24;
+  --success-color: #009d25;
 }
 
 * {
@@ -16,7 +16,7 @@
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "JetBrains Mono", monospace;
   font-size: 1rem;
   line-height: 1.6;
   background-color: #fff;
@@ -29,7 +29,7 @@ a {
 }
 
 a:hover {
-  color: #666;
+  /* color: #666; */
 }
 
 ul {
@@ -112,8 +112,15 @@ img {
 /* Cards */
 .card {
   padding: 1rem;
-  border: #ccc 1px dotted;
-  margin: 0.7rem 0;
+  border: #ccc 1px solid;
+  margin: 2rem 0;
+  background-color: rgb(250, 250, 250);
+  border-radius: 5px;
+  box-shadow: 0 3px 5px -5px rgb(76, 76, 76);
+}
+
+.user-card {
+  box-shadow: 0 8px 10px -5px rgb(76, 76, 76);
 }
 
 /* List */
@@ -207,6 +214,8 @@ img {
   margin-right: 0.5rem;
   transition: opacity 0.2s ease-in;
   outline: none;
+  border-radius: 5px;
+  box-shadow: 0 5px 5px -5px rgb(76, 76, 76);
 }
 
 .btn-link {
@@ -218,12 +227,14 @@ img {
 .btn-block {
   display: block;
   width: 100%;
+  border-radius: 5px;
 }
 
 .btn-sm {
   font-size: 0.8rem;
   padding: 0.3rem 1rem;
   margin-right: 0.2rem;
+  border-radius: 5px;
 }
 
 .badge {
@@ -310,6 +321,7 @@ img {
 /* Forms */
 input {
   margin: 1.2rem 0;
+  border-radius: 5px;
 }
 
 .form-text {
@@ -356,6 +368,7 @@ table th {
   width: 100%;
   opacity: 0.9;
   margin-bottom: 1rem;
+  border-bottom: 3px solid rgb(153, 255, 0);
 }
 
 .navbar ul {
@@ -369,7 +382,7 @@ table th {
 }
 
 .navbar a:hover {
-  color: var(--light-color);
+  color: rgb(0, 255, 0);
 }
 
 .navbar .welcome span {

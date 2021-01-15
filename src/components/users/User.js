@@ -37,7 +37,7 @@ const User = ({ match }) => {
         Back to Search
       </Link>
 
-      <div className="card grid-2">
+      <div className="card user-card grid-2">
         <div className="all-center">
           <img
             src={avatar_url}
